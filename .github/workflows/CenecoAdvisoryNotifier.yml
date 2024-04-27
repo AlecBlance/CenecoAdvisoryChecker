@@ -1,7 +1,8 @@
 name: Ceneco Advisory Notifier
 
 on:
-  push:
+  schedule:
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
