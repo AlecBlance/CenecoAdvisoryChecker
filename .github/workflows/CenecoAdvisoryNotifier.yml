@@ -1,0 +1,40 @@
+name: Ceneco Advisory Notifier
+
+on:
+  push:
+
+permissions:
+  contents: write
+
+jobs:
+  CheckAdvisory:
+    environment: email
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+      - run: npm install
+      - name: Check Advisory
+        uses: ./
+        id: check-advisory
+        with:
+          place: ${{ secrets.PLACE }}
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        if: steps.check-advisory.outputs.isSendEmail == 'true'
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Brownout advisory for ${{ secrets.PLACE }}
+          to: ${{ secrets.MAIL_TO }}
+          from: Github Ceneco Actions
+          body: |
+            Hi, there is a brownout advisory for ${{secrets.PLACE}}.
+            Please check the advisory at ${{steps.check-advisory.outputs.advisoryUrl}}.

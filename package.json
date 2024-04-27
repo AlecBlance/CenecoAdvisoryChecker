@@ -1,0 +1,19 @@
+{
+  "name": "ceneco-advisory-checker",
+  "version": "1.0.0",
+  "description": "Github actions that checks if your place is in Ceneco power advisory",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Alec Blance",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1",
+    "jsdom": "^24.0.0"
+  },
+  "type": "module"
+}
