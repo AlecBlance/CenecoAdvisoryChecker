@@ -1,0 +1,15 @@
+name: Ceneco Advisory Notifier
+description: Checks for advisory and sends email if place is affected
+inputs:
+  place:
+    description: "Place to look for in advisory"
+    required: true
+    default: ""
+outputs:
+  isSendEmail:
+    description: "To send email or not"
+  advisoryUrl:
+    description: "URL of advisory"
+runs:
+  using: node20
+  main: ./src/index.js
