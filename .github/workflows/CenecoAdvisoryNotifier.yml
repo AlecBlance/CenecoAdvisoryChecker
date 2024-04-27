@@ -12,12 +12,10 @@ jobs:
     environment: email
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          fetch-depth: 2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "20"
+          node-version: 20
       - run: npm install
       - name: Check Advisory
         uses: ./
