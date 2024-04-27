@@ -1,5 +1,5 @@
 name: Ceneco Advisory Notifier
-description: Checks for advisory and sends email if place is affected
+description: Github action that checks if your place is in Ceneco Power Advisory
 inputs:
   place:
     description: "Place to look for in advisory"
