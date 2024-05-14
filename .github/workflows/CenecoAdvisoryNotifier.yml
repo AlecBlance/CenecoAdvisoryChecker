@@ -26,9 +26,9 @@ jobs:
       - name: Send text message
         if: steps.check-advisory.outputs.isSendEmail == 'true'
         run: |
-          curl -X POST ${secrets.SMSAPI} \
+          curl -X POST ${{ secrets.SMSAPI }} \
           -H 'Content-Type: application/json' \
           -d '{
             "number": "${{ secrets.NUMBER }}",
-            "message": "Hi, there is a brownout advisory for ${{secrets.PLACE}}. Please check the advisory at ${{steps.check-advisory.outputs.advisoryUrl}}".
+            "message": "Hi, there is a brownout advisory for ${{ secrets.PLACE }}. Please check the advisory at ${{ steps.check-advisory.outputs.advisoryUrl }}".
           }'
