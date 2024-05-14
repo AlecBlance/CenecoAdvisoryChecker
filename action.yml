@@ -10,6 +10,8 @@ outputs:
     description: "To send email or not"
   advisoryUrl:
     description: "URL of advisory"
+  dateAndTime:
+    description: "Date and time of advisory"
 runs:
   using: node20
   main: ./src/index.js
