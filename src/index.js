@@ -10,6 +10,7 @@ if (!advisory) {
   process.exit();
 }
 const isPresent = await checkIfPlacePresent(place, advisory);
-core.setOutput("isSendEmail", isPresent);
+core.setOutput("isSendEmail", !!isPresent);
 core.setOutput("advisoryUrl", advisory);
+core.setOutput("dateAndTime", isPresent);
 await exec.exec("./src/updateAdvisory.sh");
