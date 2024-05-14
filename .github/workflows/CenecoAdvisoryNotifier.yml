@@ -22,18 +22,12 @@ jobs:
         id: check-advisory
         with:
           place: ${{ secrets.PLACE }}
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
+      - name: Send text message
         if: steps.check-advisory.outputs.isSendEmail == 'true'
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: Brownout advisory for ${{ secrets.PLACE }}
-          to: ${{ secrets.MAIL_TO }}
-          from: Github Ceneco Actions
-          body: |
-            Hi, there is a brownout advisory for ${{secrets.PLACE}}.
-            Please check the advisory at ${{steps.check-advisory.outputs.advisoryUrl}}.
+        run: |
+          curl -X POST ${secrets.SMSAPI} \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "number": "${{ secrets.NUMBER }}",
+            "message": "Hi, there is a brownout advisory for ${{secrets.PLACE}}. Please check the advisory at ${{steps.check-advisory.outputs.advisoryUrl}}".
+          }'
