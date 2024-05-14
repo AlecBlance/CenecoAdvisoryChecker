@@ -49,7 +49,20 @@ const createAdvisory = async (cenecoAdvisory) => {
  */
 export const checkIfPlacePresent = async (place, latestUrl) => {
   const dom = await extractDom(latestUrl);
-  return dom.body.textContent.toLowerCase().includes(place.toLowerCase());
+  const divWithPlace = [
+    ...dom.body.querySelectorAll('[data-widget_type="text-editor.default"]'),
+  ].filter((el) =>
+    el.textContent.toLowerCase().includes(place.toLowerCase())
+  )[0];
+  if (!divWithPlace) return false;
+  const dateAndTime = [...divWithPlace.querySelectorAll("p")]
+    .filter((el) => {
+      const text = el.textContent.toLowerCase();
+      return text.includes("date") || text.includes("time");
+    })
+    .map((el) => el.textContent.trim())
+    .join("\n");
+  return dateAndTime;
 };
 
 /**
