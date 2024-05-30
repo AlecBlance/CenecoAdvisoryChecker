@@ -19,7 +19,11 @@ const corsUrl = (url) => {
  */
 const extractDom = async (urlToFetch) => {
   const url = corsUrl(urlToFetch);
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+    },
+  });
   const html = await response.text();
   const dom = new jsdom.JSDOM(html);
   return dom.window.document;
