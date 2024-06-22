@@ -30,8 +30,8 @@ jobs:
           for number in "${numbers[@]}"; do
             curl -X POST ${{ secrets.SMSAPI }} \
             -H 'Content-Type: application/json' \
-            -d '{
-              "number": $number,
-              "message": "Hi, there is a brownout advisory for ${{ secrets.PLACE }}.\\n\\n${{ steps.check-advisory.outputs.dateAndTime }}\\n\\nPlease be guided."
-            }'
+            -d "{
+              \"number\": \"$number\",
+              \"message\": \"Hi, there is a brownout advisory for ${{ secrets.PLACE }}.\\n\\n${{ steps.check-advisory.outputs.dateAndTime }}\\n\\nPlease be guided.\"
+            }"
           done
