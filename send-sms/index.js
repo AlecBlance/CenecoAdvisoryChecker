@@ -13,9 +13,7 @@ for (const number of numbersArr) {
     },
     body: JSON.stringify({
       number: `${number}`,
-      message: `Hi, there is a brownout advisory for ${place}.\n\n${
-        time.split("@")[0]
-      }\n${time.split("@")[1]}`,
+      message: `Brownout advisory for ${place} on ${time} is now available.`,
     }),
   });
 }
