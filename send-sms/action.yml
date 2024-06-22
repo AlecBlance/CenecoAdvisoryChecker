@@ -1,0 +1,22 @@
+name: Ceneco Advisory Notifier
+description: Github action that checks if your place is in Ceneco Power Advisory
+inputs:
+  numbers:
+    description: "numbers"
+    required: true
+    default: ""
+  place:
+    description: "Place to look for in advisory"
+    required: true
+    default: ""
+  time:
+    description: "time"
+    required: true
+    default: ""
+  api:
+    description: "api"
+    required: true
+    default: ""
+runs:
+  using: node20
+  main: ./index.js
