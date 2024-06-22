@@ -3,7 +3,7 @@ const core = require("@actions/core");
 const api = core.getInput("api");
 const numbers = core.getInput("numbers");
 const place = core.getInput("place");
-const time = core.getOutput("time");
+const time = core.getInput("time");
 const numbersArr = numbers.split(",");
 for (const number of numbersArr) {
   fetch(api, {
