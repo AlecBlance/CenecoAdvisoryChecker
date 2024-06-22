@@ -33,5 +33,6 @@ jobs:
             -d "{
               \"number\": \"$number\",
               \"message\": \"Hi, there is a brownout advisory for ${{ secrets.PLACE }}.\\n\\n${{ steps.check-advisory.outputs.dateAndTime }}\\n\\nPlease be guided.\"
-            }"
+            }" &
+            wait $!
           done
