@@ -31,7 +31,7 @@ jobs:
             curl -X POST ${{ secrets.SMSAPI }} \
             -H 'Content-Type: application/json' \
             -d '{
-              "number": "${number}",
+              "number": "$number",
               "message": "Hi, there is a brownout advisory for ${{ secrets.PLACE }}.\\n\\n${{ steps.check-advisory.outputs.dateAndTime }}\\n\\nPlease be guided."
             }'
           done
