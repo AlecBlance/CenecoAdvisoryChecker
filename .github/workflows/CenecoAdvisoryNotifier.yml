@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+        working-directory: ./advisory-checker
+      - run: npm install
+        working-directory: ./send-sms
       - name: Check Advisory
         uses: ./advisory-checker
         id: check-advisory
