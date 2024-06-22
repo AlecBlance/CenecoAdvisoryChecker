@@ -69,7 +69,7 @@ export const checkIfPlacePresent = async (place, latestUrl) => {
       return text.includes("date") || text.includes("time");
     })
     .map((el) => el.textContent.trim())
-    .join("\\\\n");
+    .join("\\n");
   return dateAndTime;
 };
 
