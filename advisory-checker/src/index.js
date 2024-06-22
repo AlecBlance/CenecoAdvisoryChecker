@@ -13,4 +13,4 @@ const isPresent = await checkIfPlacePresent(place, advisory);
 core.setOutput("isSendEmail", !!isPresent);
 core.setOutput("advisoryUrl", advisory);
 core.setOutput("dateAndTime", isPresent);
-await exec.exec("./src/updateAdvisory.sh");
+await exec.exec("./advisory-checker/src/updateAdvisory.sh");
