@@ -1,3 +1,5 @@
+import core from "@actions/core";
+
 const api = core.getInput("api");
 const numbers = core.getInput("numbers");
 const place = core.getInput("place");
