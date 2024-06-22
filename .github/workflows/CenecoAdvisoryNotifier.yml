@@ -26,12 +26,12 @@ jobs:
       - name: Send text message
         if: steps.check-advisory.outputs.isSendEmail == 'true'
           run: |
-          IFS=',' read -ra numbers <<< "${{ secrets.NUMBER }}"
-          for number in "${numbers[@]}"; do
-            curl -X POST ${{ secrets.SMSAPI }} \
-            -H 'Content-Type: application/json' \
-            -d '{
-              "number": "${number}",
-              "message": "Hi, there is a brownout advisory for ${{ secrets.PLACE }}.\\n\\n${{ steps.check-advisory.outputs.dateAndTime }}\\n\\nPlease be guided."
-            }'
-          done
+            IFS=',' read -ra numbers <<< "${{ secrets.NUMBER }}"
+            for number in "${numbers[@]}"; do
+              curl -X POST ${{ secrets.SMSAPI }} \
+              -H 'Content-Type: application/json' \
+              -d '{
+                "number": "${number}",
+                "message": "Hi, there is a brownout advisory for ${{ secrets.PLACE }}.\\n\\n${{ steps.check-advisory.outputs.dateAndTime }}\\n\\nPlease be guided."
+              }'
+            done
