@@ -59,6 +59,10 @@ export const checkIfPlacePresent = async (place, latestUrl) => {
     el.textContent.toLowerCase().includes(place.toLowerCase())
   )[0];
   if (!divWithPlace) return false;
+  const filePath = "./cenecoAdvisory.json";
+  const cenecoAdvisory = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  cenecoAdvisory.brownOut = true;
+  fs.writeFileSync(filePath, JSON.stringify(cenecoAdvisory));
   const dateAndTime = [...divWithPlace.querySelectorAll("p")]
     .filter((el) => {
       const text = el.textContent.toLowerCase();
