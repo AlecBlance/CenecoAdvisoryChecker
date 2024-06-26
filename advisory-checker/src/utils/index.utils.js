@@ -40,6 +40,7 @@ const createAdvisory = async (cenecoAdvisory) => {
   const latestUrl = article[0].querySelector("a").href;
   if (cenecoAdvisory.latest === latestUrl) return;
   cenecoAdvisory.latest = latestUrl;
+  cenecoAdvisory.brownOut = false;
   console.log("New advisory found:", latestUrl);
   fs.writeFileSync("./cenecoAdvisory.json", JSON.stringify(cenecoAdvisory));
   return latestUrl;
