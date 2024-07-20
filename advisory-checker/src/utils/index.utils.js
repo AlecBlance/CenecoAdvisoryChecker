@@ -2,30 +2,25 @@ import jsdom from "jsdom";
 import fs from "fs";
 
 /**
- * Adds the CORS proxy URL to the given URL.
- *
- * @param {string} url - The URL to add the CORS proxy to.
- * @returns {string} The modified URL with the CORS proxy.
- */
-const corsUrl = (url) => {
-  return "https://corsproxy.io/?" + encodeURIComponent(url);
-};
-
-/**
  * Extracts the DOM from the provided URL.
  *
  * @param {string} urlToFetch - The URL to fetch and extract the DOM from.
  * @returns {Document} - The extracted DOM document.
  */
 const extractDom = async (urlToFetch) => {
-  const url = corsUrl(urlToFetch);
-  const response = await fetch(url, {
+  const response = await fetch("http://flaresolverr:8191/v1", {
+    method: "POST",
     headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      cmd: "request.get",
+      url: urlToFetch,
+      maxTimeout: 60000,
+    }),
   });
-  const html = await response.text();
-  const dom = new jsdom.JSDOM(html);
+  const html = await response.json();
+  const dom = new jsdom.JSDOM(html.solution.response);
   return dom.window.document;
 };
 

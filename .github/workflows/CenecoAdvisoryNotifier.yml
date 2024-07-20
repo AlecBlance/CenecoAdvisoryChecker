@@ -12,6 +12,11 @@ jobs:
   CheckAdvisory:
     environment: email
     runs-on: ubuntu-latest
+    services:
+      flaresolverr:
+        image: flaresolverr/flaresolverr
+        ports:
+          - 8191:8191
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
