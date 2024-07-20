@@ -8,7 +8,7 @@ import fs from "fs";
  * @returns {Document} - The extracted DOM document.
  */
 const extractDom = async (urlToFetch) => {
-  const response = await fetch("http://flaresolverr:8191/v1", {
+  const response = await fetch("http://localhost:8191/v1", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
